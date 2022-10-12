@@ -13,6 +13,14 @@ const allProducts = [
   },
 ];
 
+const oneProduct = [
+  {
+    id: 999,
+    name: 'reator ARC',
+  },
+];
+
 module.exports = {
   allProducts,
+  oneProduct,
 };
