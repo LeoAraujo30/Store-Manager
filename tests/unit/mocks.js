@@ -20,7 +20,23 @@ const oneProduct = [
   },
 ];
 
+const allSales = [
+  {
+    productId: 1,
+    quantity: 10,
+  },
+  {
+    productId: 2,
+    quantity: 5,
+  },
+  {
+    productId: 3,
+    quantity: 20,
+  },
+];
+
 module.exports = {
   allProducts,
   oneProduct,
+  allSales,
 };

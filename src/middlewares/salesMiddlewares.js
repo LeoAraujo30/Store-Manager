@@ -5,7 +5,7 @@ const productId = joi.number().required();
 const quantity = joi.number().required();
 
 const validateSale = (req, res, next) => {
-  req.body.forEach((obj) => {
+  req.body.forEach((obj, index) => {
     const { error: error1 } = productId.validate(obj.productId);
     if (error1) return res.status(400).json({ message: '"productId" is required' });
 
@@ -17,9 +17,9 @@ const validateSale = (req, res, next) => {
         { message: '"quantity" must be greater than or equal to 1' },
       );
     }
+
+    if (index === req.body.length - 1) return next();
   });
-      
-  return next();
 };
 
 const validateProductId = async (req, res, next) => {
@@ -29,9 +29,10 @@ const validateProductId = async (req, res, next) => {
     return result.every((product) => product.id !== id);
   });
   if (bools.some((bool) => bool === true)) {
-    return res.status(404).json({ message: 'Product not found' });
+    res.status(404).json({ message: 'Product not found' });
+  } else {
+    next();
   }
-  return next();
 };
 
 module.exports = {
