@@ -5,7 +5,7 @@ const models = require('../../../src/models/productsModels');
 const mocks = require('../mocks');
 
 const { expect } = chai;
-const { getAll, getById, add } = models;
+const { getAll, getById, add, update } = models;
 const { allProducts } = mocks;
 
 describe('testando productsModels', function () {
@@ -23,6 +23,11 @@ describe('testando productsModels', function () {
     sinon.stub(connection, 'execute').resolves([{ insertId: 999 }]);
     const result = await add('reator ARC');
     expect(result[0].insertId).to.be.equal(999);
+  });
+  it('Atualizando um produto', async function () {
+    sinon.stub(connection, 'execute').resolves([{ changedRows: 1 }]);
+    const result = await update(1, 'reator ARC');
+    expect(result[0].changedRows).to.be.equal(1);
   });
   afterEach(sinon.restore);
 });

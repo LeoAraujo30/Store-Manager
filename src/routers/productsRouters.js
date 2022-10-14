@@ -11,4 +11,8 @@ router.get('/:id', controllers.getProductById);
 
 router.post('/', middlewares.validateProduct, controllers.addProduct);
 
+router.put('/:id', middlewares.validateProduct, controllers.updateProduct);
+
+router.delete('/:id', controllers.removeProduct);
+
 module.exports = router;

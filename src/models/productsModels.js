@@ -17,10 +17,26 @@ const getById = async (id) => {
 
 const add = async (name) => {
   const result = await connection.execute(
-    `INSERT INTO StoreManager.products (name)
-    VALUES (?)`,
+    'INSERT INTO StoreManager.products (name) VALUES (?)',
     [name],
     );
+  return result;
+};
+
+const update = async (id, name) => {
+  const result = await connection.execute(
+    'UPDATE StoreManager.products SET name = ? WHERE id = ?',
+    [name, id],
+  );
+  return result;
+};
+
+const remove = async (id) => {
+  const result = await connection.execute(
+    'DELETE FROM StoreManager.products WHERE id = ?',
+    [id],
+  );
+  console.log(result);
   return result;
 };
 
@@ -28,4 +44,6 @@ module.exports = {
   getAll,
   getById,
   add,
+  update,
+  remove,
 };
