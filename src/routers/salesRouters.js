@@ -7,8 +7,8 @@ router.use(express.json());
 
 router.post('/', middlewares.validateSale, middlewares.validateProductId, controllers.addSale);
 
-// router.get('/:id', controllers.getProductById);
+router.get('/', controllers.getAllSales);
 
-// router.post('/', middlewares.validateProduct, controllers.addProduct);
+router.get('/:id', controllers.getSalesById);
 
 module.exports = router;
